@@ -5,10 +5,7 @@ import com.apiexercises.utilities.Response;
 import com.apiexercises.services.EmployeeService;
 import com.apiexercises.utilities.HTTPStatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -40,9 +37,9 @@ public class EmployeeResource extends ResourceTemplate{
     }
 
     //calls the service method and assigns the returned object to the data parameter in the Response controller
-    @RequestMapping("/{id}")
+    @RequestMapping("")
     @Override
-    public Response getById(@PathVariable(value="id")int id) {
+    public Response getById(@RequestParam(value="emp_no")int id) {
         Employee employee = service.getById(id);
 
         //add in some if statements with errors
@@ -50,9 +47,9 @@ public class EmployeeResource extends ResourceTemplate{
     }
 
     //calls the service method and returns a Response object with a custom message
-    @RequestMapping(path="/{id}", method= RequestMethod.DELETE)
+    @RequestMapping(path="/{emp_no}", method= RequestMethod.DELETE)
     @Override
-    public Response deleteById(@PathVariable(value="id")int id){
+    public Response deleteById(@PathVariable(value="emp_no")int id){
         service.deleteById(id);
         return new Response(OK, "Successfully Deleted");
     }
