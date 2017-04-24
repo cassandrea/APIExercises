@@ -39,7 +39,7 @@ public class DepartmentResource extends ResourceTemplate{
     }
 
     //calls the service method and assigns the returned object to the data parameter in the Response controller
-    @RequestMapping("/{id}")
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     @Override
     public Response getByIdString(@PathVariable(value="id")String id){
             Department department = service.getByIdString(id);
@@ -48,11 +48,4 @@ public class DepartmentResource extends ResourceTemplate{
             return new Response(OK, department);
         }
 
-    //calls the service method and returns a Response object with a custom message
-    @RequestMapping(path="/{id}", method=RequestMethod.DELETE)
-    @Override
-    public Response deleteByIdString(@PathVariable(value="id")String id){
-        service.deleteByIdString(id);
-        return new Response(OK, "Successfully Deleted");
-    }
 }

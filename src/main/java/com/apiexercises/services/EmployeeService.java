@@ -24,4 +24,10 @@ public class EmployeeService implements ServiceTemplate{
     public Employee getById(int id){
         return mapper.getById(id);
     }
+
+    //calls the mapper method to delete the Department that matches the id passed down from the URI through the Resource
+    @Override
+    public void deleteById(int id){
+        mapper.deleteById(id);
+    }
 }

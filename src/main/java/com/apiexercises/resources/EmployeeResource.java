@@ -7,9 +7,13 @@ import com.apiexercises.utilities.HTTPStatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+
+import static com.apiexercises.utilities.HTTPStatusCode.OK;
+
 /**
  * Maps the URI to a method that calls the Service methods and returns a Response object with a status code, message,
  * and requested data
@@ -43,5 +47,13 @@ public class EmployeeResource extends ResourceTemplate{
 
         //add in some if statements with errors
         return new Response(HTTPStatusCode.OK, employee);
+    }
+
+    //calls the service method and returns a Response object with a custom message
+    @RequestMapping(path="/{id}", method= RequestMethod.DELETE)
+    @Override
+    public Response deleteById(@PathVariable(value="id")int id){
+        service.deleteById(id);
+        return new Response(OK, "Successfully Deleted");
     }
 }

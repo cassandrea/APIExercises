@@ -26,9 +26,5 @@ public class DepartmentService implements ServiceTemplate{
         return mapper.getByIdString(id);
     }
 
-    //calls the mapper method to delete the Department that matches the id passed down from the URI through the Resource
-    @Override
-    public void deleteByIdString(String id){
-        mapper.deleteByIdString(id);
-    }
+
 }
