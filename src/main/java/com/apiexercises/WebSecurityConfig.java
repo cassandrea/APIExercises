@@ -32,3 +32,7 @@
 //                .withUser("user").password("password").roles("USER");
 //    }
 //}
+
+/**
+ * Commented out so HTTP requests could be received through chrome app
+ */

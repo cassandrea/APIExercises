@@ -9,13 +9,28 @@
 
         <div><h3>Click <a th:href="@{/departments/}">here</a> to see all departments.</h3></div>
 
-        <div><h3>Enter an employee number to see their record:</h3>
-        <form th:action="@{/employees{path}(path=${emp_no})}" method="get">
-            <label> Employee Number: <input type="text" name="emp_no"/> </label>
+        <div><h3>Enter an Employee ID to see their record:</h3>
+        <form th:action="@{/employees{path}(path=${id})}" method="get">
+            <label> Employee ID: <input type="number" name="id"/> </label>
             <input type="submit" value="Submit"/>
         </form></div>
-        <!--<form th:action="@{/logout}" method="post">-->
-            <!--<input type="submit" value="Sign Out"/>-->
-        <!--</form>-->
+
+    <div><h3>Enter a Department ID to see its record:</h3>
+        <form th:action="@{/departments{path}(path=${id})}" method="get">
+            <label> Department ID: <input type="number" name="id"/> </label>
+            <input type="submit" value="Submit"/>
+        </form></div>
+
+    <div><h3>Enter a Position ID to see its record:</h3>
+        <form th:action="@{/positions{path}(path=${id})}" method="get">
+            <label> Position ID: <input type="number" name="id"/> </label>
+            <input type="submit" value="Submit"/>
+        </form></div>
+
     </body>
 </html>
+
+<!--Sign Out Button-->
+    <!--<form th:action="@{/logout}" method="post">-->
+    <!--<input type="submit" value="Sign Out"/>-->
+    <!--</form>-->

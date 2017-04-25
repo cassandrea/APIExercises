@@ -9,6 +9,8 @@ import java.util.ArrayList;
  * Generic interface to be extended by all Mapper interfaces
  * It should be annotated with @Mapper
  * @param <T>
+ *
+ * @author cass
  */
 @Mapper
 public interface MapperTemplate<T extends Object> {
@@ -28,12 +30,7 @@ public interface MapperTemplate<T extends Object> {
      * @param id passed down from the URI through the Resource and Service
      * @return HTTPError Exception - These methods are overridden in the implementation, based on String vs int id
      */
-    default Object getById(int id) {
-        return new HTTPError(HTTPStatusCode.TEAPOT);
-    }
-    default Object getByIdString(String id) {
-        return new HTTPError(HTTPStatusCode.TEAPOT);
-    }
+    Object getById(int id);
 
     /**
      * These methods will be annotated with @Select which takes a String containing a SQL query as a parameter
@@ -43,8 +40,7 @@ public interface MapperTemplate<T extends Object> {
      * @param id passed down from the URI through the Resource and Service
      * @return 0 for failure and 1 for success
      */
-    default int deleteById(int id) {return 0;}
-    default int deleteByIdString(String id) {return 0;}
+    int deleteById(int id);
 
     /**
      *This method will be annotated with @Select which takes a String containing a SQL query as a parameter

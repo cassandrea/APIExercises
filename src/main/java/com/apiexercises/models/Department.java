@@ -5,19 +5,21 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * POJO that corresponds to the departments table in the employees database
+ *
+ * @author cass
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Department {
-    private String dept_no;
+    private int id;
     private String dept_name;
 
-    public String getDept_no() {
-        return dept_no;
+    public int getDept_no() {
+        return id;
     }
 
     public void setDept_no(String dept_no) {
-        this.dept_no = dept_no;
+        this.id = id;
     }
 
     public String getDept_name() {
@@ -31,7 +33,7 @@ public class Department {
     @Override
     public String toString() {
         return "Department{" +
-                "dept_no=" + dept_no +
+                "id=" + id +
                 ", dept_name='" + dept_name + '\'' +
                 '}';
     }

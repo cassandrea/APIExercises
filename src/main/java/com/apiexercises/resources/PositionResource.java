@@ -1,15 +1,14 @@
 package com.apiexercises.resources;
 
-import com.apiexercises.models.Department;
-import com.apiexercises.utilities.HTTPStatusCode;
 import com.apiexercises.utilities.Response;
-import com.apiexercises.services.DepartmentService;
+import com.apiexercises.models.Position;
+import com.apiexercises.services.PositionService;
+import com.apiexercises.utilities.HTTPStatusCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
-import static com.apiexercises.utilities.HTTPStatusCode.NO_CONTENT;
 import static com.apiexercises.utilities.HTTPStatusCode.OK;
 
 /**
@@ -19,52 +18,53 @@ import static com.apiexercises.utilities.HTTPStatusCode.OK;
  * @author cass
  */
 @RestController
-@RequestMapping ("/departments")
-public class DepartmentResource extends ResourceTemplate{
+@RequestMapping("/positions")
+public class PositionResource extends ResourceTemplate{
 
     //Uses Spring to control the creation of a service object
     @Autowired
-    private DepartmentService service;
+    private PositionService service;
 
     //calls the service method and assigns the returned ArrayList to the data parameter in the Response controller
-    @RequestMapping ("/")
+    @Override
+    @RequestMapping("/")
     public Response getAll() {
-        ArrayList<Department> departments = service.getAll();
-        if (departments.size() == 0) {
-            return new Response(NO_CONTENT);
+        ArrayList<Position> positions = service.getAll();
+
+        if (positions.size() == 0) {
+            return new Response(HTTPStatusCode.NO_CONTENT);
         } else {
-            return new Response(OK, departments);
+            return new Response(HTTPStatusCode.OK, positions);
         }
     }
     //calls the service method and assigns the returned object to the data parameter in the Response controller
     @RequestMapping("")
     @Override
-    public Response getById(@RequestParam(value="id")int id){
-            Department department = service.getById(id);
-            return new Response(OK, department);
-        }
+    public Response getById(@RequestParam(value="id")int id) {
+        Position position = service.getById(id);
+        return new Response(HTTPStatusCode.OK, position);
+    }
     //calls the service method and returns a Response object with a custom message
     @RequestMapping(path="", method= RequestMethod.DELETE)
     @Override
-    public Response deleteById(@RequestParam(value="id")int id){
+    public Response deleteById(@RequestParam(value="emp_no")int id){
         String message = service.deleteById(id);
         return new Response(OK, message);
     }
     //calls the service method and assigns the returned object to the data parameter in the Response controller
     @RequestMapping(method = RequestMethod.PATCH, value = "/")
     @Override
-    public Response updateById(@RequestBody Object department) {
-        Department newDepartment = service.updateById(department);
-        return new Response(HTTPStatusCode.OK, newDepartment);
+    public Response updateById(@RequestBody Object position) {
+        Position newPosition = service.updateById(position);
+        return new Response(HTTPStatusCode.OK, newPosition);
     }
     //calls the service method and assigns the returned object to the data parameter in the Response controller
     @RequestMapping(method = RequestMethod.POST, value = "/")
     @Override
-    public Response addNew(@RequestBody Object department) {
-        Department newDepartment = service.addNew(department);
-        return new Response(HTTPStatusCode.OK, newDepartment);
+    public Response addNew(@RequestBody Object position) {
+        Position newPosition = service.addNew(position);
+        return new Response(HTTPStatusCode.OK, newPosition);
     }
-
     /**
      * Improvements
      *
@@ -72,3 +72,4 @@ public class DepartmentResource extends ResourceTemplate{
      * the HTTP methods can then call these to avoid try/catch and if statements
      */
 }
+

@@ -7,11 +7,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.Date;
 /**
  * POJO that corresponds to the employees table in the employees database
+ *
+ * @author cass
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Employee {
-    private int emp_no;
+    private int id;
     private Date birth_date;
     private String first_name;
     private String last_name;
@@ -19,11 +21,11 @@ public class Employee {
     private Date hire_date;
 
     public int getEmp_no() {
-        return emp_no;
+        return id;
     }
 
     public void setEmp_no(int emp_no) {
-        this.emp_no = emp_no;
+        this.id = emp_no;
     }
 
     public Date getBirth_date() {
@@ -69,7 +71,7 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee{" +
-                "emp_no=" + emp_no +
+                "emp_no=" + id +
                 ", birth_date=" + birth_date +
                 ", first_name='" + first_name + '\'' +
                 ", last_name='" + last_name + '\'' +

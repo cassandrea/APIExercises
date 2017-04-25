@@ -1,8 +1,8 @@
-package com.apiexercises.mappers;
+package com.apiexercises.services;
 
 import org.junit.Test;
 
-public class SalaryMapperTest {
+public class PositionServiceTest {
     @Test
     public void getAll() throws Exception {
     }

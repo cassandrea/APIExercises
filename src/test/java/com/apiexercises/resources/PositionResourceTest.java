@@ -1,8 +1,8 @@
-package com.apiexercises.services;
+package com.apiexercises.resources;
 
 import org.junit.Test;
 
-public class SalaryServiceTest {
+public class PositionResourceTest {
     @Test
     public void getAll() throws Exception {
     }
