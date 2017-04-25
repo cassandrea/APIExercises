@@ -25,9 +25,23 @@ public class EmployeeService implements ServiceTemplate{
         return mapper.getById(id);
     }
 
-    //calls the mapper method to delete the Department that matches the id passed down from the URI through the Resource
+    //calls the mapper method to delete the Employee that matches the id passed down from the URI through the Resource
     @Override
-    public void deleteById(int id){
-        mapper.deleteById(id);
+    public String deleteById(int id){
+        int success = mapper.deleteById(id);
+        if (success > 0)
+            return "successfully deleted";
+        else
+            return "failed to delete";
+    }
+    //
+    public Employee addNew(Employee employee){
+        int id = mapper.addNew(employee);
+        return mapper.getById(id);
+    }
+    //
+    public Employee updateById(Employee employee){
+        int id = mapper.updateById(employee);
+        return mapper.getById(id);
     }
 }

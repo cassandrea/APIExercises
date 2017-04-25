@@ -50,7 +50,25 @@ public class EmployeeResource extends ResourceTemplate{
     @RequestMapping(path="/{emp_no}", method= RequestMethod.DELETE)
     @Override
     public Response deleteById(@PathVariable(value="emp_no")int id){
-        service.deleteById(id);
-        return new Response(OK, "Successfully Deleted");
+        String message = service.deleteById(id);
+        return new Response(OK, message);
+    }
+    //calls the service method and assigns the returned object to the data parameter in the Response controller
+    @RequestMapping(method = RequestMethod.PATCH, value = "/")
+    //override once added to template
+    public Response updateById(@RequestBody Employee employee) {
+        Employee newEmployee = service.updateById(employee);
+
+        //add in some if statements with errors
+        return new Response(HTTPStatusCode.OK, newEmployee);
+    }
+    //calls the service method and assigns the returned object to the data parameter in the Response controller
+    @RequestMapping(method = RequestMethod.POST, value = "/")
+    //override once added to template
+    public Response addNew(@RequestBody Employee employee) {
+        Employee newEmployee = service.addNew(employee);
+
+        //add in some if statements with errors
+        return new Response(HTTPStatusCode.OK, newEmployee);
     }
 }

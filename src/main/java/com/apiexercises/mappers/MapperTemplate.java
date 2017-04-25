@@ -23,7 +23,7 @@ public interface MapperTemplate<T extends Object> {
     ArrayList<T> getAll();
 
     /**
-     * * This method will be annotated with @Select which takes a String containing a SQL query as a parameter
+     * * These methods will be annotated with @Select which takes a String containing a SQL query as a parameter
      *
      * @param id passed down from the URI through the Resource and Service
      * @return HTTPError Exception - These methods are overridden in the implementation, based on String vs int id
@@ -31,16 +31,33 @@ public interface MapperTemplate<T extends Object> {
     default Object getById(int id) {
         return new HTTPError(HTTPStatusCode.TEAPOT);
     }
-
     default Object getByIdString(String id) {
         return new HTTPError(HTTPStatusCode.TEAPOT);
     }
 
     /**
-     * This method will be annotated with @Select which takes a String containing a SQL query as a parameter
+     * These methods will be annotated with @Select which takes a String containing a SQL query as a parameter
      *
-     * @param id
+     * These methods are overridden in the implementation, based on String vs int id
+     *
+     * @param id passed down from the URI through the Resource and Service
+     * @return 0 for failure and 1 for success
      */
-    default void deleteById(int id) {}
-    default void deleteByIdString(String id) {}
+    default int deleteById(int id) {return 0;}
+    default int deleteByIdString(String id) {return 0;}
+
+    /**
+     *This method will be annotated with @Select which takes a String containing a SQL query as a parameter
+     *
+     * @param object passed down from the URI through the Resource and Service
+     * @return the id from the updated object
+     */
+    int updateById(Object object);
+    /**
+     *This method will be annotated with @Select which takes a String containing a SQL query as a parameter
+     *
+     * @param object passed down from the URI through the Resource and Service
+     * @return the id from the new object
+     */
+    int addNew(Object object);
 }

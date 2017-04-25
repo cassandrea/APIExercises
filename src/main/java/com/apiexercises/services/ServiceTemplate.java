@@ -36,6 +36,9 @@ public interface ServiceTemplate<T extends Object> {
      * This method calls the deleteById method on the autowired mapper object
      * @param id passed down from the URI through the Resource
      */
-    default void deleteById(int id) {}
-    default void deleteByIdString(String id) {}
+    default String  deleteById(int id) {return "failure";}
+    default String deleteByIdString(String id) {return "failure";}
+
+    //addNew
+    //updateById
 }

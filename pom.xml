@@ -62,12 +62,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-		<!-- tag::security[] -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<!-- end::security[] -->
+		<!--&lt;!&ndash; tag::security[] &ndash;&gt;-->
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-starter-security</artifactId>-->
+		<!--</dependency>-->
+		<!--&lt;!&ndash; end::security[] &ndash;&gt;-->
 	</dependencies>
 
 	<build>

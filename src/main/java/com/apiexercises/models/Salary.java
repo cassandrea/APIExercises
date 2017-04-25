@@ -1,6 +1,7 @@
 package com.apiexercises.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -8,6 +9,7 @@ import java.util.Date;
  * POJO that corresponds to the salaries table in the employees database
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Salary {
     private int emp_no;
     private BigDecimal salary;

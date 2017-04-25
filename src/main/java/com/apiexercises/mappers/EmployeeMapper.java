@@ -1,9 +1,8 @@
 package com.apiexercises.mappers;
 
 import com.apiexercises.models.Employee;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
+
 import java.util.ArrayList;
 /**
  * Executes SQL queries for Employee
@@ -15,6 +14,16 @@ public interface EmployeeMapper extends MapperTemplate{
     String GET_ALL = "select * from employees";
     String GET_BY_ID = "select * from employees where emp_no = #{id}";
     String DELETE_BY_ID = "delete from employees where emp_no = #{id}";
+    String UPDATE_BY_ID = "update employees set " +
+            "birth_date = #{birth_date}," +
+            "first_name = #{first_name}," +
+            "last_name = #{last_name}," +
+            "gender = #{gender}," +
+            "hire_date = #{hire_date}" +
+            "where emp_no = #{emp_no}";
+    String ADD_NEW = "insert into employees " +
+            "(birth_date, first_name, last_name, gender, hire_date)" +
+            "values (#{birth_date}, #{first_name}, #{last_name}, #{gender}, #{hire_date} )";
 
     //returns an array list of all employees
     @Select(GET_ALL)
@@ -29,5 +38,16 @@ public interface EmployeeMapper extends MapperTemplate{
     //deletes the Department that matches the id passed down from the URI through the Resource and Service
     @Delete(DELETE_BY_ID)
     @Override
-    void deleteById(int id);
+    int deleteById(int id);
+
+    //
+    @Update(UPDATE_BY_ID)
+    @Override
+    int updateById(Object employee);
+
+    //
+    @Insert(ADD_NEW)
+    @Options(useGeneratedKeys = true, keyProperty = "emp_no")
+    @Override
+    int addNew(Object employee);
 }

@@ -1,11 +1,13 @@
 package com.apiexercises.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * POJO that corresponds to the departments table in the employees database
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Department {
     private String dept_no;
     private String dept_name;
